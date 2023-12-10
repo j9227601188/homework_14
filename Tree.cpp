@@ -11,18 +11,17 @@ TreeDictionary::TreeDictionary() {
 
 TreeDictionary::~TreeDictionary() {
     
-    //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-    // делит рут
+    //!!!
 }
 
 TreeDictionary::TreeNode* TreeDictionary::TreeNode::getNewNode(void) {
-    // Выделяем память по новый узел
+    // We allocate memory for a new node
     struct TreeNode *pNode =  new TreeNode;
 
-    // устанавливаем флаг конца слова в false
+    // setting the end of the word flag to false
     pNode->isEndOfWord = false; 
 
-    // инициализируем детей нулевым уазателем
+    // initialize the children with a null pointer
     for (int i = 0; i < ALPHABET_SIZE; i++) 
         pNode->children[i] = nullptr;
 
@@ -37,14 +36,14 @@ void TreeDictionary::TreeNode::insert(TreeNode* root, std::string key) {
     {
         int index = key[i] - 'a'; 
 
-        // если указатель пустрой, создаем новый узел
+        // if the pointer is empty, create a new node
         if (!node->children[index]) {
             node->children[index] = getNewNode();
         }
         node->children[index]->freq++;
         node = node->children[index];
     }
-    // помечаем последний узлел как лист, т.е. конец слова
+    // we mark the last node as a leaf, i.e. the end of the word
     node->isEndOfWord = true;
 }
 
@@ -73,18 +72,17 @@ bool TreeDictionary::TreeNode::isEmpty(TreeNode* root) {
 
 TreeDictionary::TreeNode* TreeDictionary::TreeNode::
 remove(TreeNode* root, std::string key, int depth) { 
-    // Если дерево пустое 
     if (!root)
         return nullptr;
   
-    // если дошли до конца ключа 
+    // if you have reached the end of the key
     if (depth == key.size()) { 
   
-        // Этот узел больше не конец слова 
+        // This node is no longer the end of the word 
         if (root->isEndOfWord)
             root->isEndOfWord = false; 
   
-        // Если ключ не евляется префиксом, удаляем его
+        // If the key is not a prefix, delete it
         if (isEmpty(root)) { 
             delete (root);
             root = nullptr;
@@ -93,20 +91,20 @@ remove(TreeNode* root, std::string key, int depth) {
         return root;
     }
 
-    // Если не дошли до конца ключа, рекурсивно вызываем для ребенка 
-    // соответствующего символа 
+    // If we haven't reached the end of the key, we recursively call for the child 
+    // the corresponding symbol 
     int index = key[depth] - 'a';
     root->children[index] = remove(root->children[index], key, depth + 1); 
   
-    // Если у корня нет дочернего слова 
-    // (удален только один его дочерний элемент), 
-    // и он не заканчивается другим словом. 
+    //If the root does not have a child word 
+    //(only one of its child elements has been deleted), 
+    //and it does not end with another word.
     if (isEmpty(root) && root->isEndOfWord == false) { 
         delete (root);
         root = nullptr; 
     }
   
-    // возвращаем новый корень
+    // returning a new root
     return root; 
 }
 
@@ -157,6 +155,6 @@ void TreeDictionary::find_words_for_prefixes
     
     std::string postfix;
     
-    //вызываем рекурсивную функцию
+    //calling a recursive function
     find_w_f_p_recursion(root_for_find, words, prefixes, postfix);
 }
