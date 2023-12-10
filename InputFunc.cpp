@@ -13,11 +13,11 @@ void inputFunc()
     while(test._working) {
         
         words.clear();
-        std::cout << "Введите начало слова: ";
+        std::cout << "Enter the beginning of the word: ";
         std::string prefix;
         std::cin >> prefix;
                 
-        //заполняем вектор доступными вариантами
+        //filling in the vector with available options
         test.find_words_for_prefixes(words, prefix);
                
         //std::cout << words.back()<<'\n';
