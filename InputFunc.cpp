@@ -16,14 +16,10 @@ void inputFunc()
         std::cout << "Введите начало слова: ";
         std::string prefix;
         std::cin >> prefix;
-        
-        std::cout << "телеметрия: в векторе " << words.size() << " элементов\n";    //телеметрия
-        
+                
         //заполняем вектор доступными вариантами
         test.find_words_for_prefixes(words, prefix);
-        
-        std::cout << "телеметрия: в векторе " << words.size() << " элементов\n";    //телеметрия
-        
+               
         //std::cout << words.back()<<'\n';
         //words.pop_back();
         
