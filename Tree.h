@@ -17,16 +17,16 @@ class TreeDictionary
         // New TreeNode
         TreeNode *getNewNode(void);     
         
-        //Вставляет слово в дерево
+        //Inserts a word into the tree
         void insert(TreeNode* root, std::string);
         
-        // Возврашает true если ключ есть в дереве, иначе false
+        // Returns true if the key is in the tree, otherwise false
         bool search(TreeNode*&, std::string);
         
-        // Вохвращает true если root имеет лист, иначе false 
+        // Returns true if root has a leaf, otherwise false
         bool isEmpty(TreeNode*);
         
-        // Рекурсивная функция удаления ключа из дерева
+        // Recursive key removal function from the tree
         TreeNode* remove(TreeNode*, std::string, int);
     };
     
